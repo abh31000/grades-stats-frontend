@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 function Contact({handlestate}:any):React.JSX.Element {
     return(
         <>
         <div className="flex px-10 justify-between h-16 w-full text-white text-sm select-none font-[Inter] font-medium bg-black">
             <div className="flex shrink my-auto space-x-12">
-                <h1 className="cursor-pointer">Email: example@gmail.com</h1>
-                <h1 className="cursor-pointer">Telegram: loukablouka</h1>
-                <h1 className="cursor-pointer">Phone: +213 067898754</h1>
+                <h1 className="cursor-pointer hover:underline hover:underline-offset-2 ">Email: example@gmail.com</h1>
+                <h1 className="cursor-pointer hover:underline hover:underline-offset-2 ">Telegram: loukablouka</h1>
+                <h1 className="cursor-pointer hover:underline hover:underline-offset-2 ">Phone: +213 0678 9875</h1>
             </div>
             <div onClick={handlestate} className="flex cursor-pointer py-5 space-x-1">
                 <h1>Contact</h1>
@@ -35,6 +36,7 @@ export default function LargeNav():React.JSX.Element {
     
     return(
         <>
+        <div className="overflow-hidden">
         {contact === false ?
         <div className="flex justify-between h-16 w-full text-sm font-[Inter] select-none pl-10 border-b-[3px] border-black">
             <div className="h-fit w-fit py-2">
@@ -55,6 +57,7 @@ export default function LargeNav():React.JSX.Element {
         :
         <Contact handlestate={handleContact}></Contact>
         }
+        </div>
         </>
     )
 }

@@ -1,8 +1,37 @@
-import * as React from "react";
+import { useState } from "react";
 
-export default function SmallNav():React.JSX.Element {
+
+function Menu({handlestate}:any):React.JSX.Element {
     return(
         <>
+        <div className="flex justify-between h-16 w-full bg-black">
+            <div className="flex font-[Inter] select-none text-sm my-auto px-6 space-x-8 text-white">
+                <h1 className="cursor-pointer hover:underline hover:underline-offset-2">Accueil</h1>
+                <h1 className="cursor-pointer hover:underline hover:underline-offset-2">Statistiques</h1>
+                <h1 className="cursor-pointer hover:underline hover:underline-offset-2">Contact</h1>
+            </div>
+            <div onClick={handlestate} className="py-[22px] cursor-pointer px-6">
+                <svg width="29" height="16" viewBox="0 0 29 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line y1="1" x2="28" y2="1" stroke="white" strokeWidth="1.7"/>
+                    <line y1="8" x2="28" y2="8" stroke="white" strokeWidth="1.7"/>
+                    <line y1="15" x2="28" y2="15" stroke="white" strokeWidth="1.7"/>
+                </svg>
+            </div>
+        </div>
+        </>
+    )
+}
+
+export default function SmallNav():React.JSX.Element {
+    const [menu, setMenu] = useState(false)
+
+    function handleMenu() {
+        if(menu === false){setMenu(true)}
+        else {setMenu(false)}
+    }
+    return(
+        <>
+        {menu === false ?
         <div className="flex justify-between h-16 w-full font-[Inter] select-none pl-4 border-b-[3px] border-black">
             <div className="h-fit w-fit py-2">
                 <svg className="block" width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -11,14 +40,17 @@ export default function SmallNav():React.JSX.Element {
                 </svg>
             </div>
 
-            <div className="bg-black py-[21px] px-5 text-white cursor-pointer">
+            <div onClick={handleMenu} className="bg-black py-[22px] px-6 text-white cursor-pointer">
                 <svg width="29" height="16" viewBox="0 0 29 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line y1="1" x2="29" y2="1" stroke="white" strokeWidth="1.7"/>
-                    <line y1="8" x2="29" y2="8" stroke="white" strokeWidth="1.7"/>
-                    <line y1="15" x2="29" y2="15" stroke="white" strokeWidth="1.7"/>
+                    <line y1="1" x2="28" y2="1" stroke="white" strokeWidth="1.7"/>
+                    <line y1="8" x2="28" y2="8" stroke="white" strokeWidth="1.7"/>
+                    <line y1="15" x2="28" y2="15" stroke="white" strokeWidth="1.7"/>
                 </svg>
             </div>
         </div>
+        :
+        <Menu handlestate={handleMenu}></Menu>
+        }
         </>
     )
 }
